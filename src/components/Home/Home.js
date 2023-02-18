@@ -33,6 +33,7 @@ const Wrapper = styled.section`
     padding: 24px;
     gap: 81px;
     padding-bottom: 48px;
+    min-height: 81vh;
   }
 `;
 

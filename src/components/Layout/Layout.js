@@ -43,6 +43,7 @@ const Wrapper = styled.div`
     }
     @media ${QUERIES.phoneAndSmaller} {
       background-image: url('${data.basePath}/assets/destination/background-destination-mobile.jpg');
+      background-attachment: fixed;
     }
   `
       : ""};
