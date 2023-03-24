@@ -2,6 +2,7 @@ import styled, { keyframes } from "styled-components";
 import data from "../../data.json";
 import { QUERIES } from "../constants";
 import { useState, useEffect } from "react";
+import ClickableWrapper from "../ClickableWrapper";
 
 const slideDown = keyframes`
   0% {
@@ -303,7 +304,7 @@ const BulletsWrapper = styled.div`
   }
 `;
 
-const Bullet = styled.div`
+const Bullet = styled.button`
   width: 15px;
   height: 15px;
   cursor: pointer;
@@ -312,6 +313,11 @@ const Bullet = styled.div`
   transition: all 0.3s ease-in-out;
   background-color: var(--color-white);
   opacity: ${(p) => (p.active ? "1" : "0.17")};
+
+  &:focus {
+    outline: 3px dotted var(--color-white);
+    outline-offset: 4px;
+  }
 
   @media ${QUERIES.phoneAndSmaller} {
     width: 10px;
@@ -375,12 +381,14 @@ function Crew() {
               return <Bullet key={idx} active={true} />;
             }
             return (
-              <Bullet
+              <ClickableWrapper
                 key={idx}
                 onClick={() => {
                   setTab(entry.name);
                 }}
-              />
+              >
+                <Bullet />
+              </ClickableWrapper>
             );
           })}
         </BulletsWrapper>

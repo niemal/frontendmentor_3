@@ -7,7 +7,7 @@ import Technology from "../Technology";
 import styled from "styled-components";
 
 const Wrapper = styled.main`
-  height: 100%;
+  min-height: 100%;
   overflow: hidden;
 `;
 

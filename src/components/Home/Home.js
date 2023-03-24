@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import data from "../../data.json";
 import { QUERIES } from "../constants";
+import ClickableWrapper from "../ClickableWrapper";
 
 const Wrapper = styled.section`
   position: relative;
@@ -129,6 +130,11 @@ const ExploreWrapper = styled.a`
   place-content: center;
   text-decoration: none;
 
+  &:focus {
+    outline: 3px dotted var(--color-white);
+    outline-offset: 8px;
+  }
+
   &:hover {
     background-color: var(--color-open-blue);
   }
@@ -183,9 +189,16 @@ function Home() {
         </MainText>
       </TextWrapper>
 
-      <ExploreWrapper href={data.basePath + "/destination"}>
-        <ExploreInside>EXPLORE</ExploreInside>
-      </ExploreWrapper>
+      <ClickableWrapper
+        href={data.basePath + "/destination"}
+        onClick={() => {
+          window.location.href = data.basePath + "/destination";
+        }}
+      >
+        <ExploreWrapper>
+          <ExploreInside>EXPLORE</ExploreInside>
+        </ExploreWrapper>
+      </ClickableWrapper>
     </Wrapper>
   );
 }

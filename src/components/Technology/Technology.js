@@ -3,6 +3,7 @@ import data from "../../data.json";
 import { useState, useEffect } from "react";
 import { QUERIES } from "../constants";
 import { TitleWrapper, TitlePreface, TitleMain } from "../Crew";
+import ClickableWrapper from "../ClickableWrapper";
 
 const Wrapper = styled.section`
   min-height: 100vh;
@@ -97,10 +98,17 @@ const BulletsWrapper = styled.div`
   }
 `;
 
-const BulletContainer = styled.div`
+const BulletContainer = styled.button`
   position: relative;
   width: 80px;
   height: 80px;
+  border-radius: 50%;
+  transition: all 0.3s ease-in-out;
+
+  &:focus {
+    outline: 3px dotted var(--color-white);
+    outline-offset: 12px;
+  }
 
   @media ${QUERIES.tabletAndSmaller} {
     width: 56px;
@@ -377,9 +385,9 @@ function Technology() {
   const [tab, setTab] = useState(data.technology[0].name);
 
   useEffect(() => {
+    setTrigger(false);
     setTech(pickTechnology(tab));
 
-    setTrigger(false);
     const timer = setTimeout(() => {
       setTrigger(true);
     }, 150);
@@ -409,17 +417,19 @@ function Technology() {
               }
 
               return (
-                <BulletContainer
+                <ClickableWrapper
                   key={idx}
                   onClick={() => {
                     setTab(tech.name);
                   }}
                 >
-                  <Bullet>
-                    <BulletLetter shadow={true}>{idx + 1}</BulletLetter>
-                  </Bullet>
-                  <BulletLetter>{idx + 1}</BulletLetter>
-                </BulletContainer>
+                  <BulletContainer>
+                    <Bullet>
+                      <BulletLetter shadow={true}>{idx + 1}</BulletLetter>
+                    </Bullet>
+                    <BulletLetter>{idx + 1}</BulletLetter>
+                  </BulletContainer>
+                </ClickableWrapper>
               );
             })}
           </BulletsWrapper>

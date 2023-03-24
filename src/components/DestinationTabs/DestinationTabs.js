@@ -2,6 +2,7 @@ import styled, { keyframes } from "styled-components";
 import data from "../../data.json";
 import { QUERIES } from "../constants";
 import { useState, useEffect } from "react";
+import ClickableWrapper from "../ClickableWrapper";
 
 const Wrapper = styled.div`
   display: flex;
@@ -86,7 +87,7 @@ const NavWrapper = styled.div`
   }
 `;
 
-const NavEntry = styled.div`
+const NavEntry = styled.button`
   cursor: pointer;
   padding-bottom: 12px;
   letter-spacing: 2.7px;
@@ -101,6 +102,11 @@ const NavEntry = styled.div`
   ${(p) => (p.isThis ? "border-color: var(--color-white);" : "")}
   color: ${(p) =>
     p.isThis ? "var(--color-white)" : "var(--color-light-blue)"};
+
+  &:focus {
+    outline: 3px dotted var(--color-white);
+    outline-offset: 4px;
+  }
 
   &:hover {
     ${(p) => (!p.isThis ? "border-color: var(--color-light-blue);" : "")}
@@ -232,7 +238,6 @@ function DestinationTabs() {
   };
 
   useEffect(() => {
-    setImageOpacity(0);
     const timer = setTimeout(() => {
       setDestination(pickDestination(tab));
       setImageOpacity(1);
@@ -249,38 +254,45 @@ function DestinationTabs() {
       />
       <TabWrapper>
         <NavWrapper>
-          <NavEntry
+          <ClickableWrapper
             onClick={() => {
+              setImageOpacity(0);
               setTab("Moon");
             }}
             isThis={tab === "Moon"}
           >
-            MOON
-          </NavEntry>
-          <NavEntry
+            <NavEntry>MOON</NavEntry>
+          </ClickableWrapper>
+
+          <ClickableWrapper
             onClick={() => {
+              setImageOpacity(0);
               setTab("Mars");
             }}
             isThis={tab === "Mars"}
           >
-            MARS
-          </NavEntry>
-          <NavEntry
+            <NavEntry>MARS</NavEntry>
+          </ClickableWrapper>
+
+          <ClickableWrapper
             onClick={() => {
+              setImageOpacity(0);
               setTab("Europa");
             }}
             isThis={tab === "Europa"}
           >
-            EUROPA
-          </NavEntry>
-          <NavEntry
+            <NavEntry>EUROPA</NavEntry>
+          </ClickableWrapper>
+
+          <ClickableWrapper
             onClick={() => {
+              setImageOpacity(0);
               setTab("Titan");
             }}
             isThis={tab === "Titan"}
           >
-            TITAN
-          </NavEntry>
+            <NavEntry>TITAN</NavEntry>
+          </ClickableWrapper>
         </NavWrapper>
         <ContentWrapper opacity={imageOpacity}>
           <TabTitle>{destination?.name}</TabTitle>

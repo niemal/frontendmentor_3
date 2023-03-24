@@ -1,9 +1,15 @@
 import styled from "styled-components";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import { QUERIES } from "../constants";
+import ClickableWrapper from "../ClickableWrapper";
 
 const Wrapper = styled.div`
   & a {
+    &:focus {
+      outline: 3px dotted var(--color-white);
+      outline-offset: 8px;
+    }
+
     display: flex;
     gap: 12px;
     font-family: var(--font-primary);
@@ -66,15 +72,22 @@ function NavLink({ to, idx, burger, children, ...props }) {
   let resolved = useResolvedPath(to);
   let match = useMatch({ path: resolved.pathname, end: true });
 
+  console.log(resolved);
   return (
     <Wrapper
       {...props}
       isThis={!burger && match && match.pathname.endsWith(to)}
     >
-      <Link to={to}>
-        <Preface>{idx}</Preface>
-        <MainContent>{children}</MainContent>
-      </Link>
+      <ClickableWrapper
+        onClick={() => {
+          window.location.href = "/frontendmentor_3" + resolved.pathname;
+        }}
+      >
+        <Link to={to}>
+          <Preface>{idx}</Preface>
+          <MainContent>{children}</MainContent>
+        </Link>
+      </ClickableWrapper>
     </Wrapper>
   );
 }
