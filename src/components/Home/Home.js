@@ -2,6 +2,7 @@ import styled from "styled-components";
 import data from "../../data.json";
 import { QUERIES } from "../constants";
 import ClickableWrapper from "../ClickableWrapper";
+import VisuallyHidden from "../VisuallyHidden";
 
 const Wrapper = styled.section`
   position: relative;
@@ -195,8 +196,9 @@ function Home() {
           window.location.href = data.basePath + "/destination";
         }}
       >
-        <ExploreWrapper>
+        <ExploreWrapper aria-label={"Explore button"}>
           <ExploreInside>EXPLORE</ExploreInside>
+          <VisuallyHidden>Explore button</VisuallyHidden>
         </ExploreWrapper>
       </ClickableWrapper>
     </Wrapper>

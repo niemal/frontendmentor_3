@@ -72,7 +72,6 @@ function NavLink({ to, idx, burger, children, ...props }) {
   let resolved = useResolvedPath(to);
   let match = useMatch({ path: resolved.pathname, end: true });
 
-  console.log(resolved);
   return (
     <Wrapper
       {...props}

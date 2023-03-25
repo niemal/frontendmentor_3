@@ -3,6 +3,7 @@ import data from "../../data.json";
 import { QUERIES } from "../constants";
 import { useState, useEffect } from "react";
 import ClickableWrapper from "../ClickableWrapper";
+import VisuallyHidden from "../VisuallyHidden";
 
 const Wrapper = styled.div`
   display: flex;
@@ -71,7 +72,7 @@ const ContentWrapper = styled(TabWrapper)`
   }
 `;
 
-const NavWrapper = styled.div`
+const NavWrapper = styled.nav`
   display: flex;
   gap: 36px;
   max-width: 445px;
@@ -252,14 +253,23 @@ function DestinationTabs() {
         opacity={imageOpacity}
         alt={tab + " image"}
       />
-      <TabWrapper>
-        <NavWrapper>
+      <TabWrapper aria-describedby={"nav-planet-desc"}>
+        <NavWrapper
+          aria-label={"Planet navigation panel"}
+          aria-describedby={"nav-planet-desc"}
+        >
+          <VisuallyHidden id={"nav-planet-desc"}>
+            Navigate between different destinations: Moon, Mars, Europa, and
+            Titan.
+          </VisuallyHidden>
           <ClickableWrapper
             onClick={() => {
               setImageOpacity(0);
               setTab("Moon");
             }}
             isThis={tab === "Moon"}
+            role={"button"}
+            aria-label={"Moon navigation entry"}
           >
             <NavEntry>MOON</NavEntry>
           </ClickableWrapper>
@@ -270,6 +280,8 @@ function DestinationTabs() {
               setTab("Mars");
             }}
             isThis={tab === "Mars"}
+            role={"button"}
+            aria-label={"Mars navigation entry"}
           >
             <NavEntry>MARS</NavEntry>
           </ClickableWrapper>
@@ -280,6 +292,8 @@ function DestinationTabs() {
               setTab("Europa");
             }}
             isThis={tab === "Europa"}
+            role={"button"}
+            aria-label={"Europa navigation entry"}
           >
             <NavEntry>EUROPA</NavEntry>
           </ClickableWrapper>
@@ -290,6 +304,8 @@ function DestinationTabs() {
               setTab("Titan");
             }}
             isThis={tab === "Titan"}
+            role={"button"}
+            aria-label={"TItan navigation entry"}
           >
             <NavEntry>TITAN</NavEntry>
           </ClickableWrapper>

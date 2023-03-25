@@ -378,7 +378,13 @@ function Crew() {
         <BulletsWrapper trigger={trigger}>
           {data.crew.map((entry, idx) => {
             if (entry.name === tab) {
-              return <Bullet key={idx} active={true} />;
+              return (
+                <Bullet
+                  key={idx}
+                  active={true}
+                  aria-label={`active - ${entry.name} slide`}
+                />
+              );
             }
             return (
               <ClickableWrapper
@@ -386,6 +392,7 @@ function Crew() {
                 onClick={() => {
                   setTab(entry.name);
                 }}
+                aria-label={`${entry.name} slide`}
               >
                 <Bullet />
               </ClickableWrapper>

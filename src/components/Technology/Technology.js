@@ -407,7 +407,10 @@ function Technology() {
             {data.technology.map((tech, idx) => {
               if (tab === tech.name) {
                 return (
-                  <BulletContainer key={idx}>
+                  <BulletContainer
+                    key={idx}
+                    aria-label={`active - ${tech.name} button`}
+                  >
                     <Bullet active={true}>
                       <BulletLetter shadow={true}>{idx + 1}</BulletLetter>
                     </Bullet>
@@ -422,6 +425,7 @@ function Technology() {
                   onClick={() => {
                     setTab(tech.name);
                   }}
+                  aria-label={`${tech.name} button`}
                 >
                   <BulletContainer>
                     <Bullet>
